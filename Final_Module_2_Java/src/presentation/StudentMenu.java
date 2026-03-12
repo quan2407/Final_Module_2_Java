@@ -50,7 +50,6 @@ public class StudentMenu {
         System.out.print("Nhập tên học viên: ");
         s.setName(InputMethods.getName());
 
-        // Nhập ngày sinh
         while (true) {
             try {
                 System.out.print("Nhập ngày sinh (yyyy-mm-dd): ");
@@ -104,7 +103,6 @@ public class StudentMenu {
                     if (!nameInput.isEmpty()) {
                         String cleanedName = nameInput.replaceAll("\\s+", " ");
 
-                        // 2. Kiểm tra Regex: Chỉ cho phép chữ cái và khoảng trắng (Unicode)
                         if (java.util.regex.Pattern.matches("^[\\p{L} ]+$", cleanedName)) {
                             s.setName(cleanedName);
                             System.out.println("=> Đã ghi nhận tên mới: " + cleanedName);

@@ -60,7 +60,7 @@ public class EnrollmentMenu {
         Enrollment e = new Enrollment();
         e.setStudentId(studentId);
         e.setCourseId(courseId);
-        e.setStatus("CONFIRMED"); // Admin thêm trực tiếp nên không cần qua bước WAITING
+        e.setStatus("CONFIRMED");
 
         try {
             enrollmentService.save(e);

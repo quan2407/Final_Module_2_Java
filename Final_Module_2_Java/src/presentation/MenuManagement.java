@@ -14,7 +14,7 @@ public class MenuManagement {
     private final Scanner sc = new Scanner(System.in);
 
     public void run() {
-        adminService.initAdmin(); // Khởi tạo admin mặc định
+        adminService.initAdmin();
         while (true) {
             System.out.println("\n========== HỆ THỐNG QUẢN LÝ ĐÀO TẠO ==========");
             System.out.println("1. Đăng nhập tư cách QUẢN TRỊ VIÊN (Admin)");

@@ -63,10 +63,10 @@ public class CourseMenu {
         Course c = new Course();
 
         System.out.print("Nhập tên khóa học: ");
-        c.setName(InputMethods.getString()); // Không lo bị trống
+        c.setName(InputMethods.getString());
 
         System.out.print("Nhập thời lượng (giờ): ");
-        c.setDuration(InputMethods.getPositiveInteger()); // Không lo bị trống hay sai định dạng
+        c.setDuration(InputMethods.getPositiveInteger());
 
         System.out.print("Nhập giảng viên: ");
         c.setInstructor(InputMethods.getString());
@@ -82,7 +82,7 @@ public class CourseMenu {
     // 3. Cập nhật sử dụng service.update()
     private void handleUpdateCourse() {
         System.out.print("Nhập ID khóa học cần sửa: ");
-        int id = InputMethods.getInteger(); // Dùng tiện ích để đảm bảo nhập đúng số ID
+        int id = InputMethods.getInteger();
 
         Course c = courseService.findById(id);
         if (c == null) {
@@ -104,7 +104,6 @@ public class CourseMenu {
                 case "1":
                     System.out.print("Nhập tên mới (Hiện tại: " + c.getName() + " - Nhấn Enter để giữ nguyên): ");
                     String name = sc.nextLine().trim();
-                    // Nếu không trống thì mới cập nhật, giúp linh hoạt hơn getString() ép buộc
                     if (!name.isEmpty()) {
                         c.setName(name);
                     }
@@ -152,7 +151,6 @@ public class CourseMenu {
         System.out.print("Nhập ID khóa học cần xóa: ");
         int id = InputMethods.getInteger();
 
-        // Bước 1: Tìm khóa học để xác nhận sự tồn tại
         Course course = courseService.findById(id);
 
         if (course != null) {
