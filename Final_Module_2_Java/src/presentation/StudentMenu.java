@@ -65,10 +65,10 @@ public class StudentMenu {
         s.setEmail(InputMethods.getEmail());
 
         System.out.print("Giới tính (1: Nam / 0: Nữ): ");
-        s.setSex(InputMethods.getBoolean()); // Chỉ cho phép 1 hoặc 0
+        s.setSex(InputMethods.getBoolean());
 
         System.out.print("Số điện thoại: ");
-        s.setPhone(InputMethods.getPhone()); // Phải đúng 10 số
+        s.setPhone(InputMethods.getPhone());
 
         System.out.print("Mật khẩu: ");
         String rawPassword = InputMethods.getString();

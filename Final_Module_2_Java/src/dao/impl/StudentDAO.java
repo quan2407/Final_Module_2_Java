@@ -76,7 +76,6 @@ public class StudentDAO implements IStudentDAO {
         }
     }
 
-    // CHỨC NĂNG: Tìm kiếm tương đối theo tên, email hoặc ID
     @Override
     public List<Student> search(String keyword) {
         List<Student> list = new ArrayList<>();
@@ -98,11 +97,9 @@ public class StudentDAO implements IStudentDAO {
         return list;
     }
 
-    // CHỨC NĂNG: Sắp xếp linh hoạt
     @Override
     public List<Student> findAllSorted(String sortBy, String order) {
         List<Student> list = new ArrayList<>();
-        // Lưu ý: Với ORDER BY, không dùng ? được cho tên cột, cần nối chuỗi cẩn thận
         String sql = "SELECT * FROM student ORDER BY " + sortBy + " " + order;
         try (Connection conn = ConnectionDB.getConnection();
              Statement stmt = conn.createStatement();

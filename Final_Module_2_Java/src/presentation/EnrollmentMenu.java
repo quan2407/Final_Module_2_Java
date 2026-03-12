@@ -125,7 +125,6 @@ public class EnrollmentMenu {
         }
     }
 
-    // Hàm in bảng dữ liệu chuẩn hóa
     private void printTable(List<Enrollment> list) {
         System.out.println("=".repeat(85));
         System.out.printf("| %-5s | %-10s | %-10s | %-12s | %-25s |\n",

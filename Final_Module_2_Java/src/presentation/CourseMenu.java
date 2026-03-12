@@ -58,7 +58,6 @@ public class CourseMenu {
         printTable(list);
     }
 
-    // 2. Thêm mới sử dụng service.save()
     private void handleAddCourse() {
         System.out.println("--- Thêm khóa học mới ---");
         Course c = new Course();
@@ -149,7 +148,6 @@ public class CourseMenu {
         }
     }
 
-    // 4. Xóa sử dụng service.delete()
     private void handleDeleteCourse() {
         System.out.print("Nhập ID khóa học cần xóa: ");
         int id = InputMethods.getInteger();
@@ -158,12 +156,10 @@ public class CourseMenu {
         Course course = courseService.findById(id);
 
         if (course != null) {
-            // Bước 2: Hiển thị thông tin khóa học sắp xóa để người dùng kiểm tra
             System.out.println("\n--- THÔNG TIN KHÓA HỌC SẮP XÓA ---");
             System.out.printf("ID: %d | Tên: %s | Giảng viên: %s\n",
                     course.getId(), course.getName(), course.getInstructor());
 
-            // Bước 3: Xác nhận Y/N
             System.out.print("\nBạn có chắc chắn muốn xóa khóa học này không? (Y/N): ");
             String confirm = sc.nextLine();
 
@@ -177,7 +173,6 @@ public class CourseMenu {
             System.out.println("=> Lỗi: Không tìm thấy khóa học nào có ID: " + id);
         }
     }
-    // 5. Tìm kiếm sử dụng service.search()
     private void handleSearchCourse() {
         System.out.print("Nhập từ khóa tìm kiếm: ");
         String keyword = sc.nextLine();
@@ -185,12 +180,10 @@ public class CourseMenu {
         printTable(result);
     }
 
-    // 6. Sắp xếp sử dụng service.findAllSorted() - Chỉ Tên hoặc ID
     private void handleSortCourse() {
         String sortBy = "";
         String order = "";
 
-        // Bước 1: Chọn tiêu chí sắp xếp
         while (true) {
             System.out.println("\n--- TIÊU CHÍ SẮP XẾP ---");
             System.out.println("1. Sắp xếp theo Tên");
@@ -212,7 +205,6 @@ public class CourseMenu {
             }
         }
 
-        // Bước 2: Chọn thứ tự sắp xếp
         while (true) {
             System.out.println("\n--- THỨ TỰ SẮP XẾP ---");
             System.out.println("1. Tăng dần (ASC)");
@@ -234,20 +226,17 @@ public class CourseMenu {
             }
         }
 
-        // Bước 3: Gọi service và hiển thị sau khi đã nhập đúng
         List<Course> list = courseService.findAllSorted(sortBy, order);
         System.out.println("\n=> KẾT QUẢ SẮP XẾP THEO " + sortBy.toUpperCase() + " (" + order + "):");
         printTable(list);
     }
 
-    // Hàm in bảng dữ liệu
     private void printTable(List<Course> list) {
         if (list.isEmpty()) {
             System.out.println("=> Thông báo: Danh sách khóa học đang trống.");
             return;
         }
 
-        // Định dạng bảng: ID(5), Tên(25), Thời lượng(12), Giảng viên(20), Ngày tạo(15)
         String headerFormat = "| %-5s | %-25s | %-12s | %-20s | %-15s |\n";
         String rowFormat    = "| %-5d | %-25s | %-12d | %-20s | %-15s |\n";
 
@@ -256,7 +245,6 @@ public class CourseMenu {
         System.out.println("-".repeat(87));
 
         for (Course c : list) {
-            // Kiểm tra nếu createdAt null thì hiển thị "N/A" để tránh lỗi
             String dateStr = (c.getCreatedAt() != null) ? c.getCreatedAt().toString() : "N/A";
 
             System.out.printf(rowFormat,

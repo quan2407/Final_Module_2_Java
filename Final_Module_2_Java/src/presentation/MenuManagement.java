@@ -47,7 +47,7 @@ public class MenuManagement {
 
         if (adminService.login(user, pass) != null) {
             System.out.println("=> Đăng nhập Admin thành công!");
-            adminMenu.displayMenu(); // Chuyển sang Menu dành riêng cho Admin
+            adminMenu.displayMenu();
         } else {
             System.out.println("=> Sai tài khoản hoặc mật khẩu!");
         }
@@ -60,7 +60,6 @@ public class MenuManagement {
         System.out.print("Password: ");
         String pass = sc.nextLine();
 
-        // Bạn cần gọi hàm login đã viết ở bước 1 (thông qua Service)
         Student s = studentService.login(email, pass);
         if (s != null) {
             System.out.println("=> Đăng nhập thành công!");

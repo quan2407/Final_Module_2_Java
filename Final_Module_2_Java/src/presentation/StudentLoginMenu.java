@@ -45,7 +45,6 @@ public class StudentLoginMenu {
         }
     }
 
-    // 1. Xem danh sách & Tìm kiếm theo tên (Tích hợp)
     private void displayAllCourses() {
         while (true) {
             List<Course> list = courseService.findAll();
@@ -66,7 +65,6 @@ public class StudentLoginMenu {
         }
     }
 
-    // 2. Đăng ký khóa học (WAITING)
     private void handleRegisterCourse(int studentId) {
         System.out.print("Nhập ID Khóa học muốn đăng ký: ");
         int courseId = InputMethods.getPositiveInteger();
@@ -76,7 +74,6 @@ public class StudentLoginMenu {
             return;
         }
 
-        // Kiểm tra trùng lặp (Chỉ chặn nếu đang WAITING hoặc CONFIRMED)
         List<Enrollment> myCourses = enrollmentService.findByStudentId(studentId);
         for (Enrollment en : myCourses) {
             if (en.getCourseId() == courseId && (en.getStatus().equals("WAITING") || en.getStatus().equals("CONFIRMED"))) {
@@ -94,7 +91,6 @@ public class StudentLoginMenu {
         System.out.println("=> Thành công: Đã gửi yêu cầu đăng ký (Đang chờ duyệt)!");
     }
 
-    // 3. Danh sách đã đăng ký & Sắp xếp
     private void displayMyCourses(int studentId) {
         List<Enrollment> list = enrollmentService.findByStudentId(studentId);
         if (list.isEmpty()) {
@@ -117,7 +113,6 @@ public class StudentLoginMenu {
         }
     }
 
-    // 4. Hủy đăng ký (Chỉ đơn WAITING)
     private void handleCancelEnrollment(int studentId) {
         List<Enrollment> waitings = enrollmentService.findByStudentId(studentId).stream()
                 .filter(e -> e.getStatus().equals("WAITING"))
@@ -133,7 +128,6 @@ public class StudentLoginMenu {
         System.out.print("Nhập ID bản đăng ký muốn hủy: ");
         int id = InputMethods.getPositiveInteger();
 
-        // Kiểm tra ID đó có thuộc về học viên này và có đang WAITING không
         Enrollment found = waitings.stream().filter(e -> e.getId() == id).findFirst().orElse(null);
         if (found == null) {
             System.out.println("=> Lỗi: ID không hợp lệ hoặc không thể hủy đơn này!");
@@ -147,7 +141,6 @@ public class StudentLoginMenu {
         }
     }
 
-    // 5. Thay đổi mật khẩu (Xác thực Email/SĐT + Pass cũ)
     private void handleChangePassword(Student s) {
         System.out.println("\n--- XÁC THỰC BẢO MẬT ---");
         System.out.print("Nhập Email hoặc SĐT đã đăng ký: ");

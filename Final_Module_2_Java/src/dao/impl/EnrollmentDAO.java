@@ -87,13 +87,10 @@ public class EnrollmentDAO implements IEnrollmentDAO {
     public List<Enrollment> findByStudentIdSorted(int studentId, String sortBy, String order) {
         List<Enrollment> list = new ArrayList<>();
 
-        // 1. Xác định cột sắp xếp: nếu là 'name' thì lấy từ bảng course (c), nếu không thì lấy từ enrollment (e)
         String sortColumn = sortBy.equalsIgnoreCase("name") ? "c.name" : "e.registered_at";
 
-        // 2. Xác định thứ tự: ASC hoặc DESC (mặc định ASC nếu truyền bậy)
         String sortOrder = order.equalsIgnoreCase("DESC") ? "DESC" : "ASC";
 
-        // 3. Câu lệnh SQL JOIN để có thể sắp xếp theo tên khóa học
         String sql = "SELECT e.* FROM enrollment e " +
                 "JOIN course c ON e.course_id = c.id " +
                 "WHERE e.student_id = ? " +
