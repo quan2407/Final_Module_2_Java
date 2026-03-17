@@ -148,4 +148,17 @@ public class StudentDAO implements IStudentDAO {
         } catch (SQLException e) { e.printStackTrace(); }
         return null;
     }
+    public boolean isEmailExist(String email) {
+        String sql = "SELECT COUNT(*) FROM student WHERE email = ?";
+        try (Connection conn = ConnectionDB.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return false;
+    }
 }

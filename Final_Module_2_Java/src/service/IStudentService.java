@@ -9,4 +9,6 @@ public interface IStudentService extends IGenericService<Student, Integer> {
     List<Student> search(String keyword);
     List<Student> findAllSorted(String sortBy, String order);
     Student login(String email, String password);
+
+    boolean isEmailExist(String email);
 }

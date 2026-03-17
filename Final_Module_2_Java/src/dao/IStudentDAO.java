@@ -9,4 +9,6 @@ public interface IStudentDAO extends IGenericDAO<Student, Integer> {
 
     public void updatePassword(int studentId, String newHashedPassword);
     Student findByEmail(String email);
+
+    boolean isEmailExist(String email);
 }

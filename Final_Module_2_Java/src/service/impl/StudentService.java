@@ -74,4 +74,8 @@ public class StudentService implements IStudentService {
         // 3. Nếu không tìm thấy hoặc sai pass
         return null;
     }
+
+    @Override
+    public boolean isEmailExist(String email) {
+        return studentDAO.isEmailExist(email);    }
 }

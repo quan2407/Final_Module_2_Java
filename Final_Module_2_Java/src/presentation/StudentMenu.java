@@ -60,8 +60,18 @@ public class StudentMenu {
             }
         }
 
-        System.out.print("Nhập email: ");
-        s.setEmail(InputMethods.getEmail());
+        while (true) {
+            System.out.print("Nhập email: ");
+            String email = InputMethods.getEmail();
+
+            // Giả sử bạn đã viết hàm checkEmailExist trong Service
+            if (studentService.isEmailExist(email)) {
+                System.out.println("=> Lỗi: Email này đã được sử dụng bởi học viên khác!");
+            } else {
+                s.setEmail(email);
+                break;
+            }
+        }
 
         System.out.print("Giới tính (1: Nam / 0: Nữ): ");
         s.setSex(InputMethods.getBoolean());
